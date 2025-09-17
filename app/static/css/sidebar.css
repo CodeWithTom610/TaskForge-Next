@@ -1,0 +1,66 @@
+/* Sidebar styles for responsive navbar */
+@media (max-width: 991.98px) {
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 250px;
+    background: #212529;
+    z-index: 1050;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease-in-out;
+    box-shadow: 2px 0 8px rgba(0,0,0,0.2);
+    padding-top: 60px;
+  }
+  .sidebar.show {
+    transform: translateX(0);
+  }
+  .sidebar .nav-link {
+    color: #fff;
+    gap:5px;
+    padding: 1rem 2rem;
+    border-bottom: 1px solid #343a40;
+  }
+  .sidebar .nav-link:hover {
+    gap:5px;
+    background: #343a40;
+  }
+  .sidebar-close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 2rem;
+    color: #fff;
+    cursor: pointer;
+  }
+    /* Remove navbar animation styles from mobile sidebar context */
+  }
+
+@media (min-width: 992px) {
+  .navbar .navbar-nav > .nav-item:not(:last-child) {
+    margin-right: 1rem;
+  }
+  .sidebar,
+  .sidebar-toggle {
+    display: none !important;
+  }
+  .navbar {
+    display: flex !important;
+    overflow: visible;
+  }
+  .navbar .nav-link {
+    transition: background 0.2s, color 0.2s, transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: transform;
+    box-sizing: border-box;
+    margin: 0;
+    border-radius: 1.75rem;
+  }
+  .navbar .nav-link:not(.dropdown-toggle):hover,
+  .navbar .nav-link:not(.dropdown-toggle):focus {
+    transform: scale(1.07);
+    background: #343a40;
+    color: #fcffec;
+    border-radius: 1.75rem;
+  }
+}

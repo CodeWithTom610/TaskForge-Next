@@ -6,7 +6,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
         {% block styles %}
-            {{ bootstrap.load_css() }}
+        {{ bootstrap.load_css() }}
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/dropdown-custom.css') }}">
+         <link rel="stylesheet" href="{{ url_for('static', filename='css/sidebar.css') }}">
         {% endblock %}
 
         <title>{{title}} | TaskForge - NEXT</title>
@@ -14,30 +16,53 @@
     </head>
     <body>
         <div class="container min-vh-100 d-flex flex-column">
-        <!-- Your page content -->
+          <!-- Sidebar toggle button (visible on small screens) -->
+          <button class="sidebar-toggle d-lg-none" id="sidebarToggle" aria-label="Open sidebar">
+            &#9776;
+          </button>
+          <!-- Sidebar (hidden on large screens) -->
+          <div class="sidebar bg-dark" id="sidebar">
+            <span class="sidebar-close" id="sidebarClose">&times;</span>
+            <a class="navbar-brand text-white ms-3 mb-4" href="/">Taskforge - NEXT</a>
+            <ul class="navbar-nav flex-column">
+              <li class="nav-item"><a class="nav-link d-flex align-items-center" href="/"><img src="{{ url_for('static', filename='svg/new.svg') }}" alt="Neu" width="20" height="20" class="me-2">Neu</a></li>
+              <li class="nav-item"><a class="nav-link d-flex align-items-center" href="/dashboard"><img src="{{ url_for('static', filename='svg/dashboard.svg') }}" alt="Dashboard" width="20" height="20" class="me-2">Dashboard</a></li>
+              <li class="nav-item"><a class="nav-link d-flex align-items-center" href="/projects"><img src="{{ url_for('static', filename='svg/projects.svg') }}" alt="Projekte" width="20" height="20" class="me-2">Projekte</a></li>
+              <li class="nav-item"><a class="nav-link d-flex align-items-center" href="/tasks"><img src="{{ url_for('static', filename='svg/tasks.svg') }}" alt="Aufgaben" width="20" height="20" class="me-2">Aufgaben</a></li>
+              {% if current_user.is_authenticated %}
+                <li class="nav-item mt-3 mb-1 text-white ms-3">Mein Account: {{ current_user.username }}</li>
+                <li class="nav-item"><a class="nav-link d-flex align-items-center" href="#"><img src="{{ url_for('static', filename='svg/project.svg') }}" alt="Projekte" width="20" height="20" class="me-2">Meine Projekte</a></li>
+                <li class="nav-item"><a class="nav-link d-flex align-items-center" href="#"><img src="{{ url_for('static', filename='svg/settings.svg') }}" alt="Einstellungen" width="20" height="20" class="me-2">Einstellungen</a></li>
+                <li class="nav-item"><a class="nav-link d-flex align-items-center" href="/logout"><img src="{{ url_for('static', filename='svg/logout.svg') }}" alt="Logout" width="20" height="20" class="me-2">Logout</a></li>
+              {% else %}
+                <li class="nav-item"><a class="nav-link" href="/login">Login</a></li>
+                <li class="nav-item"><a class="nav-link" href="/register">Registrieren</a></li>
+              {% endif %}
+            </ul>
+          </div>
+          <!-- Original navbar (hidden on small screens) -->
           <nav class="navbar navbar-expand-lg navbar-dark bg-dark rounded-pill shadow-lg px-4 my-3 mx-2">
             <a class="navbar-brand" href="/">Taskforge - NEXT</a>
-            
             <div class="collapse navbar-collapse">
-                
               <ul class="navbar-nav ms-auto mx-2">
-                
-                <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
-                <li class="nav-item"><a class="nav-link" href="/dashboard">Dashboard</a></li>
-                <li class="nav-item"><a class="nav-link" href="/projects">Projekte</a></li>
-                <li class="nav-item"><a class="nav-link" href="/tasks">Aufgaben</a></li>
-                <li class="nav-item"><a class="nav-link" href="/about">Über uns</a></li>
-
+                <li class="nav-item"><a class="nav-link d-flex align-items-center" href="/"><img src="{{ url_for('static', filename='svg/new.svg') }}" alt="Neu" width="20" height="20" class="me-2">Neu</a></li>
+                <li class="nav-item"><a class="nav-link d-flex align-items-center" href="/dashboard"><img src="{{ url_for('static', filename='svg/dashboard.svg') }}" alt="Dashboard" width="20" height="20" class="me-2">Dashboard</a></li>
+                <li class="nav-item"><a class="nav-link d-flex align-items-center" href="/projects"><img src="{{ url_for('static', filename='svg/projects.svg') }}" alt="Projekte" width="20" height="20" class="me-2">Projekte</a></li>
+                <li class="nav-item"><a class="nav-link d-flex align-items-center" href="/tasks"><img src="{{ url_for('static', filename='svg/tasks.svg') }}" alt="Aufgaben" width="20" height="20" class="me-2">Aufgaben</a></li>
               </ul>
-
               <ul class="navbar-nav ms-auto">
-                
                 {% if current_user.is_authenticated %}
-                    <li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Mein Account: {{ current_user.username }}</a>
+                    <ul class="dropdown-menu dropdown-menu-end bg-dark" style="margin-top: 10px;" aria-labelledby="navbarDropdown">
+                      <li><a class="dropdown-item d-flex align-items-center" href="#"><img src="{{ url_for('static', filename='svg/project.svg') }}" alt="Projekte" width="20" height="20" class="me-2">Meine Projekte</a></li>
+                      <li><a class="dropdown-item d-flex align-items-center" href="#"><img src="{{ url_for('static', filename='svg/settings.svg') }}" alt="Einstellungen" width="20" height="20" class="me-2">Einstellungen</a></li>
+                      <li><hr class="dropdown-divider"></li>
+                      <li><a class="dropdown-item d-flex align-items-center" href="/logout"><img src="{{ url_for('static', filename='svg/logout.svg') }}" alt="Logout" width="20" height="20" class="me-2">Logout</a></li>
+                    </ul>
+                  </li>
                 {% else %}
-                    
-                    <li class="nav-item"><a class="nav-link" href="/login">Login</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/register">Registrieren</a></li>
+                  <li class="nav-item"><a class="nav-link" href="/login"><img src="{{url_for('static', filename='svg/login.svg')}}" width="20" height="20" class="me-2" >Login</a></li>
                 {% endif %}
               </ul>
             </div>
@@ -61,6 +86,25 @@
         {% block scripts %}
             <!-- Optional JavaScript -->
             {{ bootstrap.load_js() }}
+            <script>
+              const sidebar = document.getElementById('sidebar');
+              const sidebarToggle = document.getElementById('sidebarToggle');
+              const sidebarClose = document.getElementById('sidebarClose');
+              if (sidebarToggle && sidebar && sidebarClose) {
+                sidebarToggle.addEventListener('click', function() {
+                  sidebar.classList.add('show');
+                });
+                sidebarClose.addEventListener('click', function() {
+                  sidebar.classList.remove('show');
+                });
+                // Close sidebar on outside click
+                document.addEventListener('click', function(e) {
+                  if (sidebar.classList.contains('show') && !sidebar.contains(e.target) && e.target !== sidebarToggle) {
+                    sidebar.classList.remove('show');
+                  }
+                });
+              }
+            </script>
         {% endblock %}
     </body>
 </html>

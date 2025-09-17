@@ -9,7 +9,7 @@ from .config import Config
 
 db = SQLAlchemy()
 login_manager = LoginManager()
-login_manager.login_view = 'login'
+login_manager.login_view = 'main.login'
 
 bootstrap = Bootstrap5()
 migrate = Migrate()

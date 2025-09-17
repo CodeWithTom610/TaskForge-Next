@@ -1,0 +1,37 @@
+/* Custom styles for dropdown to match navbar appearance */
+.dropdown-menu.bg-dark {
+    background-color: #212529 !important;
+    border-radius: 1.5rem;
+    box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.15);
+    border: none;
+    overflow: hidden;
+    padding: 0.5rem 0.5rem;
+}
+.dropdown-menu.bg-dark .dropdown-item {
+    color: #fff;
+    transition: background 0.2s, color 0.2s, transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+    border-radius: 1.75rem;
+    width: 96%;
+    margin-left: auto;
+    margin-right: auto;
+    box-sizing: border-box;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    margin: 0;
+}
+.dropdown-menu.bg-dark .dropdown-item:hover,
+.dropdown-menu.bg-dark .dropdown-item:focus {
+    background-color: #343a40;
+    color: #fcffec;
+    border-radius: 1.75rem;
+    width: 100%;
+    box-sizing: border-box;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    margin: 0;
+    transform: scale(1.04);
+    will-change: transform;
+}
+.dropdown-menu.bg-dark .dropdown-divider {
+    border-top: 1px solid #444;
+}
