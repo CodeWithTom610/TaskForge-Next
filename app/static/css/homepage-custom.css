@@ -1,0 +1,87 @@
+/* homepage-custom.css: Custom styles for TaskForge homepage */
+
+.homepage-hero {
+  background: linear-gradient(135deg, #1e293b 0%, #6366f1 100%);
+  color: #fff;
+  padding: 64px 0 48px 0;
+  text-align: center;
+  border-radius: 32px;
+  box-shadow: 0 8px 32px rgba(30,41,59,0.15);
+}
+
+.homepage-hero h1 {
+  font-size: 3rem;
+  font-weight: 800;
+  letter-spacing: -2px;
+  margin-bottom: 16px;
+  background: linear-gradient(90deg, #6366f1, #38bdf8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.homepage-hero p {
+  font-size: 1.25rem;
+  font-weight: 400;
+  margin-bottom: 32px;
+  color: #e0e7ef;
+}
+
+.homepage-actions {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  margin-bottom: 32px;
+}
+
+.homepage-action-btn {
+  background: linear-gradient(90deg, #6366f1 0%, #38bdf8 100%);
+  color: #fff;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  padding: 16px 32px;
+  font-size: 1.1rem;
+  box-shadow: 0 2px 8px rgba(99,102,241,0.12);
+  transition: transform 0.15s, box-shadow 0.15s;
+  cursor: pointer;
+}
+.homepage-action-btn:hover {
+  transform: translateY(-2px) scale(1.04);
+  box-shadow: 0 4px 16px rgba(56,189,248,0.18);
+}
+
+.homepage-features {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 32px;
+  margin: 48px 0 0 0;
+}
+
+.homepage-feature {
+  background: #fff;
+  color: #1e293b;
+  border-radius: 16px;
+  box-shadow: 0 2px 16px rgba(30,41,59,0.08);
+  padding: 32px 24px;
+  max-width: 320px;
+  flex: 1 1 280px;
+  text-align: center;
+  transition: box-shadow 0.2s;
+}
+.homepage-feature:hover {
+  box-shadow: 0 8px 32px rgba(99,102,241,0.18);
+}
+
+.homepage-feature img {
+  width: 48px;
+  height: 48px;
+  margin-bottom: 16px;
+}
+
+@media (max-width: 900px) {
+  .homepage-features {
+    flex-direction: column;
+    align-items: center;
+  }
+}

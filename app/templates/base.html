@@ -6,9 +6,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
         {% block styles %}
-        {{ bootstrap.load_css() }}
-        <link rel="stylesheet" href="{{ url_for('static', filename='css/dropdown-custom.css') }}">
-         <link rel="stylesheet" href="{{ url_for('static', filename='css/sidebar.css') }}">
+          {{ bootstrap.load_css() }}
+          <link rel="stylesheet" href="{{ url_for('static', filename='css/dropdown-custom.css') }}">
+          <link rel="stylesheet" href="{{ url_for('static', filename='css/sidebar.css') }}">
+          <link rel="stylesheet" href="{{ url_for('static', filename='css/homepage-custom.css') }}">
         {% endblock %}
 
         <title>{{title}} | TaskForge - NEXT</title>
@@ -16,11 +17,11 @@
     </head>
     <body>
         <div class="container min-vh-100 d-flex flex-column">
-          <!-- Sidebar toggle button (visible on small screens) -->
-          <button class="sidebar-toggle d-lg-none" id="sidebarToggle" aria-label="Open sidebar">
+          <!-- Sidebar toggle button (visible only on mobile, controlled by CSS) -->
+          <button class="sidebar-toggle" id="sidebarToggle" aria-label="Open sidebar">
             &#9776;
           </button>
-          <!-- Sidebar (hidden on large screens) -->
+          <!-- Sidebar (visible only on mobile, controlled by CSS) -->
           <div class="sidebar bg-dark" id="sidebar">
             <span class="sidebar-close" id="sidebarClose">&times;</span>
             <a class="navbar-brand text-white ms-3 mb-4" href="/">Taskforge - NEXT</a>
@@ -93,14 +94,17 @@
               if (sidebarToggle && sidebar && sidebarClose) {
                 sidebarToggle.addEventListener('click', function() {
                   sidebar.classList.add('show');
+                  sidebarToggle.classList.add('sidebar-open');
                 });
                 sidebarClose.addEventListener('click', function() {
                   sidebar.classList.remove('show');
+                  sidebarToggle.classList.remove('sidebar-open');
                 });
                 // Close sidebar on outside click
                 document.addEventListener('click', function(e) {
                   if (sidebar.classList.contains('show') && !sidebar.contains(e.target) && e.target !== sidebarToggle) {
                     sidebar.classList.remove('show');
+                    sidebarToggle.classList.remove('sidebar-open');
                   }
                 });
               }

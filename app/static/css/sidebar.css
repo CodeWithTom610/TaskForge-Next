@@ -1,3 +1,4 @@
+
 /* Sidebar styles for responsive navbar */
 @media (max-width: 991.98px) {
   .sidebar {
@@ -12,9 +13,13 @@
     transition: transform 0.3s ease-in-out;
     box-shadow: 2px 0 8px rgba(0,0,0,0.2);
     padding-top: 60px;
+    display: block !important;
   }
   .sidebar.show {
     transform: translateX(0);
+  }
+  .navbar {
+    display: none !important;
   }
   .sidebar .nav-link {
     color: #fff;
@@ -45,9 +50,37 @@
   .sidebar-toggle {
     display: none !important;
   }
-  .navbar {
-    display: flex !important;
-    overflow: visible;
+}
+
+  /* Sidebar toggle button styles for mobile */
+  @media (max-width: 991.98px) {
+    .sidebar-toggle {
+      display: flex !important;
+      align-items: center;
+      justify-content: center;
+      position: fixed;
+      top: calc(16px + env(safe-area-inset-top)); /* Lower and respect iPhone notch */
+      left: 16px;
+      z-index: 1100;
+      background: #212529;
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      width: 48px;
+      height: 48px;
+      font-size: 2rem;
+      box-shadow: 0 2px 8px rgba(99,102,241,0.12);
+      cursor: pointer;
+      transition: background 0.5s, transform 0.15s;
+      outline: none;
+    }
+    .sidebar-toggle.sidebar-open {
+  transform: scale(0.50);
+      }
+    .sidebar-toggle:active,
+    .sidebar-toggle:focus {
+      background: #212529;
+    }
   }
   .navbar .nav-link {
     transition: background 0.2s, color 0.2s, transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
@@ -63,4 +96,3 @@
     color: #fcffec;
     border-radius: 1.75rem;
   }
-}
