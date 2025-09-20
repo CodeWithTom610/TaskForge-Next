@@ -6,14 +6,18 @@
     top: 0;
     left: 0;
     height: 100vh;
-    width: 250px;
-    background: #212529;
+    width: 260px;
+    background: linear-gradient(135deg, #212529 60%, #6366f1 100%);
     z-index: 1050;
     transform: translateX(-100%);
-    transition: transform 0.3s ease-in-out;
-    box-shadow: 2px 0 8px rgba(0,0,0,0.2);
+    transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+    box-shadow: 4px 0 24px rgba(56,189,248,0.18), 2px 0 8px rgba(0,0,0,0.18);
     padding-top: 60px;
     display: block !important;
+    border-top-right-radius: 24px;
+    border-bottom-right-radius: 24px;
+    backdrop-filter: blur(8px);
+    border-left: 2px solid #6366f1;
   }
   .sidebar.show {
     transform: translateX(0);
@@ -23,21 +27,43 @@
   }
   .sidebar .nav-link {
     color: #fff;
-    gap:5px;
+    gap: 8px;
     padding: 1rem 2rem;
     border-bottom: 1px solid #343a40;
+    font-size: 1.1rem;
+    font-weight: 500;
+    border-radius: 12px;
+    margin: 4px 0;
+    transition: background 0.18s, color 0.18s, transform 0.18s;
+    box-shadow: 0 2px 8px rgba(99,102,241,0.08);
   }
   .sidebar .nav-link:hover {
-    gap:5px;
-    background: #343a40;
+    background: linear-gradient(90deg, #6366f1 0%, #38bdf8 100%);
+    color: #fcffec;
+    transform: scale(1.04);
+    box-shadow: 0 4px 16px rgba(56,189,248,0.18);
   }
   .sidebar-close {
     position: absolute;
-    top: 10px;
-    right: 15px;
-    font-size: 2rem;
+    top: 18px;
+    right: 18px;
+    font-size: 2.2rem;
     color: #fff;
+    background: rgba(99,102,241,0.18);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
+    box-shadow: 0 2px 8px rgba(99,102,241,0.12);
+    transition: background 0.18s, transform 0.18s;
+  }
+  .sidebar-close:hover {
+    background: linear-gradient(90deg, #6366f1 0%, #38bdf8 100%);
+    color: #fff;
+    transform: scale(1.08);
   }
     /* Remove navbar animation styles from mobile sidebar context */
   }
@@ -62,17 +88,22 @@
       top: calc(16px + env(safe-area-inset-top)); /* Lower and respect iPhone notch */
       left: 16px;
       z-index: 1100;
-      background: #212529;
+      background: linear-gradient(90deg, #6366f1 0%, #212529 100%);
       color: #fff;
       border: none;
       border-radius: 50%;
-      width: 48px;
-      height: 48px;
-      font-size: 2rem;
-      box-shadow: 0 2px 8px rgba(99,102,241,0.12);
+      width: 52px;
+      height: 52px;
+      font-size: 2.2rem;
+      box-shadow: 0 2px 12px rgba(56,189,248,0.18);
       cursor: pointer;
-      transition: background 0.5s, transform 0.15s;
+      transition: background 0.18s, transform 0.18s;
       outline: none;
+    }
+    .sidebar-toggle:hover {
+      background: linear-gradient(90deg, #6366f1 0%, #38bdf8 100%);
+      color: #fff;
+      transform: scale(1.08);
     }
     .sidebar-toggle.sidebar-open {
   transform: scale(0.50);
